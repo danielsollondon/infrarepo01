@@ -1,15 +1,15 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: appteam2-ns
+  name: appteam2-app2-ns
   labels:
-    name: appteam2-ns
+    name: appteam2-app2-ns
 ---
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: appteam2-quota
-  namespace: appteam2-ns
+  namespace: appteam2-app2-ns
 spec:
   hard:
     requests.cpu: "4"
