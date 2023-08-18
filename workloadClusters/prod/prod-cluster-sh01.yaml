@@ -23,7 +23,7 @@ spec:
       osType: Linux
       mode: System
     - name: pool2
-      count: 3
+      count: 5
       vmSize: Standard_DS2_v2
       osType: Linux
       mode: User
