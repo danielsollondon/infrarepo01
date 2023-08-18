@@ -29,3 +29,22 @@ spec:
       mode: User
   identity:
     type: SystemAssigned
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: appteam2-ns
+  labels:
+    name: appteam2-ns
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: appteam2-quota
+  namespace: appteam2-ns
+spec:
+  hard:
+    requests.cpu: "4"
+    requests.memory: 4Gi
+    limits.cpu: "6"
+    limits.memory: 8Gi
