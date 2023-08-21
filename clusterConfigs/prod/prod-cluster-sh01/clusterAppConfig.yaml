@@ -1,18 +1,18 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: appteam2-app2-ns
+  name: appteam1-app1-ns
   labels:
-    name: appteam2-app2-ns
+    name: appteam1-app1-ns
 ---
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: appteam2-quota
-  namespace: appteam2-app2-ns
+  name: appteam1-quota
+  namespace: appteam1-app1-ns
 spec:
   hard:
-    requests.cpu: "4"
-    requests.memory: 4Gi
-    limits.cpu: "6"
-    limits.memory: 8Gi
+    requests.cpu: "0.1"
+    requests.memory: 500Mb
+    limits.cpu: "0.5"
+    limits.memory: 1Gb
