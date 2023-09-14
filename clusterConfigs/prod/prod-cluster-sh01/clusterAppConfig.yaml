@@ -1,28 +1,9 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: appteam1-app1-ns
-  labels:
-    name: appteam1-app1-ns
----
-apiVersion: v1
-kind: ResourceQuota
-metadata:
-  name: appteam1-quota
-  namespace: appteam1-app1-ns
-spec:
-  hard:
-    requests.cpu: "4008"
-    requests.memory: 500Mi
-    limits.cpu: "400m"
-    limits.memory: 1Gi
----
-kind: Namespace
-apiVersion: v1
-metadata:
   name: appteam2-app2-ns
   labels:
-    name: appteam2-app2-ns
+    name: appteam2-ns
 ---
 apiVersion: v1
 kind: ResourceQuota
@@ -35,3 +16,88 @@ spec:
     requests.memory: 4Gi
     limits.cpu: "6"
     limits.memory: 8Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: appteam2-app2-ns
+  labels:
+    app.kubernetes.io/name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: app
+    spec:
+      containers:
+      - name: app
+        image: dansregwu3.azurecr.io/core/app:v5.18
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2000Mi
+          requests:
+            cpu: "0.1"
+            memory: 500Mi
+        ports:
+          - containerPort: 80
+            name: http-secure-80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db
+  namespace: appteam2-app2-ns
+  labels:
+    app.kubernetes.io/name: db
+spec:
+  hostname: mastersql01
+  subdomain: sqldomain
+  containers:
+  - name: db
+    image: dansregwu3.azurecr.io/core/db:v2.3
+    resources:
+      limits:
+        cpu: "2"
+        memory: 4000Mi
+      requests:
+        cpu: "1"
+        memory: 2000Mi
+    ports:
+      - containerPort: 3306
+        name: mysql-3306
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqldomain
+  namespace: appteam2-app2-ns
+spec:
+  selector:
+    app.kubernetes.io/name: db
+  ports:
+  - name: db-port1
+    protocol: TCP
+    port: 3306
+    targetPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appdomain
+  namespace: appteam2-app2-ns
+spec:
+  selector:
+    app.kubernetes.io/name: app
+  type: LoadBalancer
+  ports:
+  - name: app-port1
+    protocol: TCP
+    port: 80
+    targetPort: 80
