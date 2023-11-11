@@ -29,3 +29,31 @@ spec:
       mode: User
   identity:
     type: SystemAssigned
+---
+apiVersion: resources.azure.com/v1api20200601
+kind: ResourceGroup
+metadata:
+  name: prod-clu-grp01-test
+  namespace: default
+spec:
+  location: westus2
+---
+apiVersion: containerservice.azure.com/v1api20230201
+kind: ManagedCluster
+metadata:
+  name: asoprodcluswus401
+  namespace: default
+spec:
+  location: westus2
+  owner:
+    name: prod-clu-grp01
+  dnsPrefix: asopc01
+  agentPoolProfiles:
+    - name: pool1
+      count: 1
+      vmSize: Standard_DS2_v2
+      osType: Linux
+      mode: System
+  identity:
+    type: SystemAssigned
+
