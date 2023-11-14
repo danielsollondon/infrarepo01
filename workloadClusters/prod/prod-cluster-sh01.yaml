@@ -48,7 +48,8 @@ spec:
       mode: System
   identity:
     type: SystemAssigned
-  tags:[("CostCenter","001"),("Owner","Dan")]
+  tags:
+    [("CostCenter","001"),("Owner","Dan")]
     
     
 
