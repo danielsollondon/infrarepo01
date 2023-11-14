@@ -29,7 +29,30 @@ spec:
       mode: User
   identity:
     type: SystemAssigned
-
+---
+apiVersion: containerservice.azure.com/v1api20230201
+kind: ManagedCluster
+metadata:
+  name: asoprodcluswus401
+  namespace: default
+spec:
+  location: westus3
+  owner:
+    name: prod-clu-grp01
+  dnsPrefix: asopc01
+  agentPoolProfiles:
+    - name: pool1
+      count: 7
+      vmSize: Standard_DS2_v2
+      osType: Linux
+      mode: System
+  identity:
+    type: SystemAssigned
+  tags:
+    "CostCenter": "AI001",
+    "Environment": "Test",
+    "Owner": "PeterKay"
+    
     
     
 
