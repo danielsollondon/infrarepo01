@@ -49,9 +49,9 @@ spec:
   identity:
     type: SystemAssigned
   tags:
-    "CostCenter": "AI001",
-    "Environment": "Test",
-    "Owner": "PeterKay"
+     CostCenter: AI001
+     Environment: Test
+     Owner: PeterKay
     
     
 
