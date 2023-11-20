@@ -41,7 +41,7 @@ spec:
   dnsPrefix: asopc01
   agentPoolProfiles:
     - name: pool1
-      count: 7
+      count: 2
       vmSize: Standard_DS2_v2
       osType: Linux
       mode: System
