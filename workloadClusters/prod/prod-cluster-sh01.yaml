@@ -28,3 +28,38 @@ spec:
    CostCenter: AI3011
    Environment: Test
    Owner: PeterKay
+---
+apiVersion: containerservice.azure.com/v1api20230201
+kind: ManagedCluster
+metadata:
+  name: asocilium
+  namespace: default
+spec:
+  location: westus3
+  owner:
+    name: prod-clu-grp01
+  dnsPrefix: asopc01
+  agentPoolProfiles:
+    - name: pool1
+      count: 7
+      vmSize: Standard_DS2_v2
+      osType: Linux
+      mode: System
+  identity:
+    type: SystemAssigned
+  networkProfile:
+    dnsServiceIP: 10.0.0.10
+    networkPlugin: none
+    podCidr: 10.244.0.0/16
+    podCidrs:
+      - 10.244.0.0/16
+    serviceCidr: 10.0.0.0/16
+    serviceCidrs:
+      - 10.0.0.0/16
+  sku:
+    name: Base
+    tier: Free
+  tags:
+    CostCenter: AI001
+    Environment: Test
+    Owner: PeterKay
