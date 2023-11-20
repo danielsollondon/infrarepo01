@@ -25,6 +25,6 @@ spec:
   identity:
     type: SystemAssigned
   tags:
-   CostCenter: AI301
+   CostCenter: AI3011
    Environment: Test
    Owner: PeterKay
