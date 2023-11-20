@@ -24,3 +24,7 @@ spec:
       mode: System
   identity:
     type: SystemAssigned
+  tags:
+   CostCenter: AI301
+   Environment: Test
+   Owner: PeterKay
