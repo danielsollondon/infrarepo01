@@ -52,6 +52,8 @@ spec:
   sku:
     name: Base
     tier: Free
+  addonProfiles:
+    azurepolicy: true
   tags:
     CostCenter: AI001
     Environment: Test
