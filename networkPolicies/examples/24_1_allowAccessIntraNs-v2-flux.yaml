@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "allow-intra-ns-comms-appteam2-flux"
+  namespace: "flux-system"
+specs:
+  - endpointSelector: {}
+    egress:
+    - toEndpoints:
+      - {}
+    ingress:
+    - fromEndpoints:
+      - {}

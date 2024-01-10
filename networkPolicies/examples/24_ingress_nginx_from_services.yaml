@@ -1,0 +1,14 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumClusterWideNetworkPolicy
+metadata:
+  name: "allow-cwide-nginx-from-ns-with-labels"
+specs:
+  endpointSelector:
+    matchlabels:
+      k8s:io.kubernetes.pod.namespace: ingress-nginx
+      k8s:app.kubernetes.io/name: ingress-nginx
+  egress:
+  - toEndpoints:
+    - matchLabels:
+        k8s:io.cilium.k8s.namespace.labels.exposed: "true"
+

@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "allow-intra-ns-comms-appteam2-app2-ns-v2"
+  namespace: "appteam2-app2-ns"
+specs:
+  - endpointSelector: {}
+    egress:
+    - toEndpoints:
+      - {}
+    ingress:
+    - fromEndpoints:
+      - {}

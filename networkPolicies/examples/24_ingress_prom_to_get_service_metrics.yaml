@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumClusterWideNetworkPolicy
+metadata:
+  name: "allow-prom-to-get-metrics-from-ns-with-labels"
+specs:
+  endpointSelector:
+    matchlabels:
+      k8s:io.cilium.k8s.namespace.labels.exposed: "true"
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+      k8s:io.kubernetes.pod.namespace: monitoring
+      k8s:app.kubernetes.io/name: prometheus

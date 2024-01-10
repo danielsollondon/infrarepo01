@@ -1,0 +1,13 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "allow-in-egress-in-infra-ns"
+  namespace: "<infra-ns>"
+specs:
+  - endpointSelector: {}
+    egress:
+    - toEndpoints: 
+        - {}
+    ingress:
+    - fromEndpoints:
+        - {}

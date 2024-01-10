@@ -1,0 +1,14 @@
+apiVersion: "cilium.io/v2"
+metadata:
+  name: "allow-prom-metrics-egress"
+  namespace: operations
+specs:
+  endpointSelector:
+    matchlabels:
+      k8s:io.kubernetes.pod.namespace: operations
+      k8s:app.kubernetes.io/name: prometheus
+  egress:
+  - toEndpoints:
+    - matchLabels:
+        k8s:io.cilium.k8s.namespace.labels.exposed: "true"
+

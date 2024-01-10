@@ -1,0 +1,26 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "egress-flux-system"
+  namespace: "flux-system"
+specs:
+  - endpointSelector:
+      matchLabels: {}
+    egress:
+    - toFQDNs:
+        - matchPattern: "management.azure.com" 
+        - matchPattern: "*.dp.kubernetesconfiguration.azure.com" 
+        - matchPattern: "login.microsoftonline.com"
+        - matchPattern: "mcr.microsoft.com"  
+        - matchPattern: "github.com*"
+      toPorts:
+      - ports:
+        - port: "443"
+          protocol: ANY
+    - toCIDR:
+      - 169.254.169.254/32
+      toPorts:
+      - ports:
+        - port: "80"
+          protocol: ANY
+        

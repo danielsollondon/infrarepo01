@@ -1,0 +1,16 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: "allow-out-nginx"
+  namespace: "<infra-ns>"
+specs:
+  endpointSelector:
+    matchlabels:
+      k8s:app.kubernetes.io/name: ingress-nginx
+  egress:
+  - toEntities:
+    - kube-apiserver
+  toPorts:
+    - ports:
+      - port: "6443"
+        protocol: TCP
