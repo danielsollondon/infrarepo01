@@ -9,7 +9,7 @@ metadata:
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: appteam2-quota
+  name: mdwTest-quota
   namespace: mdwTest
 spec:
   hard:
