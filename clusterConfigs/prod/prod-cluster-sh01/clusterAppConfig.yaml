@@ -2,15 +2,15 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: mdwTest
+  name: mdwtest
   labels:
-    name: mdwTest
+    name: mdwtest
 ---
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: mdwTest-quota
-  namespace: mdwTest
+  name: mdwtest-quota
+  namespace: mdwtest
 spec:
   hard:
     requests.cpu: "4"
