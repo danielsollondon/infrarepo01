@@ -21,9 +21,9 @@ spec:
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: appteam3-app3-ns
+  name: appteam4-app4-ns
   labels:
-    name: appteam3-app3-ns
+    name: appteam4-app4-ns
 ---
 apiVersion: v1
 kind: ResourceQuota
